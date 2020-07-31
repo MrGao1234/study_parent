@@ -4,7 +4,7 @@ import com.onlin.common.ResultApi;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/eService/user")
+@RequestMapping("edu/eService/user")
 @CrossOrigin
 public class LoginController {
 
