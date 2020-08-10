@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.edu.mapper.SubjectMapper">
+
+    <resultMap id="getSubjectOne" type="com.online.edu.entity.Subject">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <collection property="children" column="id" javaType="ArrayList" ofType="com.online.edu.entity.Subject" select="getSubjectTwo"></collection>
+    </resultMap>
+
+    <select id="getSubjectTwo" resultType="com.online.edu.entity.Subject">
+        select * from edu_subject where parent_id = #{id}
+    </select>
+
+    <select id="getAllSubject" resultMap="getSubjectOne">
+        select * from edu_subject where parent_id = '0'
+    </select>
+
+</mapper>

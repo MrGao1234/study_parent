@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.online.edu.mapper.CourseMapper">
+    <resultMap id="courseMap" type="com.online.edu.entity.Course">
+        <id column="id" property="id"/>
+        <id column="teacher_id" property="teacherId"/>
+        <id column="subject_id" property="subjectId"/>
+        <id column="subject_parent_id" property="subjectParentId"/>
+        <id column="title" property="title"/>
+        <id column="price" property="price"/>
+        <id column="lesson_num" property="lessonNum"/>
+        <id column="cover" property="cover"/>
+        <id column="buy_count" property="buyCount"/>
+        <id column="view_count" property="viewCount"/>
+        <id column="version" property="version"/>
+        <id column="status" property="status"/>
+        <collection property="chapterList" column="id" select="findChapters" />
+    </resultMap>
+
+    <resultMap id="chapterMapper" type="com.online.edu.entity.Chapter">
+        <id column="id" property="id" />
+        <result column="course_id" property="courseId" />
+        <result column="title" property="title" />
+        <result column="sort" property="sort" />
+        <collection property="videoList" column="id" select="findVideos" />
+    </resultMap>
+
+    <select id="findVideos" resultType="com.online.edu.entity.Video">
+        select * from edu_video where chapter_id = #{id}
+    </select>
+
+    <select id="findChapters" resultMap="chapterMapper">
+        select * from edu_chapter where course_id = #{id}
+    </select>
+
+
+    <update id="pushCourseById">
+        update edu_course set status = 'Normal' where id = #{courseId}
+    </update>
+</mapper>

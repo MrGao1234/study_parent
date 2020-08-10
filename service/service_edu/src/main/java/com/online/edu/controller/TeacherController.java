@@ -1,5 +1,6 @@
 package com.online.edu.controller;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.onlin.common.ResultApi;
@@ -31,7 +32,10 @@ public class TeacherController {
     //查询所有
     @GetMapping("fjndAllTeacher")
     public ResultApi findAll(){
-        List<Teacher> teacherList = teacherService.list(null);
+        QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
+        wrapper.orderByAsc("name");
+
+        List<Teacher> teacherList = teacherService.list(wrapper);
 
 //        try{
 //            int i = 1 / 0;
