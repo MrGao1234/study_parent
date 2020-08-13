@@ -1,6 +1,5 @@
 package com.online.edu.controller;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.onlin.common.ResultApi;
@@ -127,6 +126,14 @@ public class TeacherController {
         }else{
             return ResultApi.error();
         }
+    }
+
+    //查询前8的老师
+    @GetMapping("getTeacherByHot")
+    public ResultApi getTeacherByHot(){
+
+        ResultApi resultApi = teacherService.findTeacherByHot();
+        return resultApi;
     }
 }
 

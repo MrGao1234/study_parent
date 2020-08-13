@@ -37,8 +37,14 @@ public class CourseController {
 
     @PostMapping("/findCourseByTrem")
     public ResultApi getCourseByTerm(@RequestBody(required = false) CourseInfoVo course){
-
+        //System.out.println("测试问题");
         return courseService.findCourseByCourse(course);
+    }
+
+    @GetMapping("/findCourserByHot")
+    public ResultApi getCourseByHot(){
+        ResultApi resultApi = courseService.findCourseByHot();
+        return resultApi;
     }
 
 }

@@ -1,0 +1,19 @@
+server:
+  port: 8003
+spring:
+  application:
+    name: service-vod
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+accessKey: LTAI4GFm7Cy1sZsHvUv44e9C
+accessScreent: oN0X7HWVqhb1eT2vRmRxoYeOXpnNb4
+
+# 熔断机制

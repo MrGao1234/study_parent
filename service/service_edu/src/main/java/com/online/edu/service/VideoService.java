@@ -1,6 +1,7 @@
 package com.online.edu.service;
 
 import com.onlin.common.ResultApi;
+import com.online.edu.entity.Chapter;
 import com.online.edu.entity.Video;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -21,6 +22,11 @@ public interface VideoService extends IService<Video> {
     //删除
     int removeVideoByList(List<Video> videoList);
 
-    ResultApi operateVideo(List<Video> videoList);
+    //新增
+    int insertVideoByChapter(Chapter chapter);
+
+    void updateVideoList(Chapter chapter);
+    //第一个参数是数据库中的，第二个是需要修改的
+    //ResultApi operateVideo(List<Video> videoList,List<Video> changedVideoLists);
 
 }

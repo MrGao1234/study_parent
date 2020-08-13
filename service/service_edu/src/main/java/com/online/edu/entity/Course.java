@@ -80,6 +80,9 @@ public class Course implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date gmtModified;
 
+    @ApiModelProperty(value = "描述")
+    private CourseDescription courseDescription;
+
     @TableField(exist = false)
     private List<Chapter> chapterList;
 }

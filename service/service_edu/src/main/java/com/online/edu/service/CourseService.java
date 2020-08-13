@@ -21,6 +21,8 @@ public interface CourseService extends IService<Course> {
 
     ResultApi findCourseByCourse(CourseInfoVo course);
 
+    ResultApi findCourseByHot();
+
 /*
     ResultApi getAllSubjectTypeOne();
 */

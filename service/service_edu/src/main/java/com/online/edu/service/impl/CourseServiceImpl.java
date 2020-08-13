@@ -14,6 +14,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 服务实现类
@@ -38,7 +40,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         //插入课程
         Course course = new Course();
         BeanUtils.copyProperties(courseInfoVo,course);
-        System.out.println(course.getId() + "************************");
+        //System.out.println(course.getId() + "************************");
 
         //判断是否有 id，有的话就是修改操作，没有就是插入
         if(course.getId() == null || "".equals(course.getId())){
@@ -72,8 +74,8 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Override
     public ResultApi pushCourse(String courseId) {
-        int bounds = courseMappe.pushCourseById(courseId);
-        System.out.println(bounds);
+        courseMappe.pushCourseById(courseId);
+        //System.out.println(bounds);
         return ResultApi.ok();
     }
 
@@ -92,7 +94,23 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
             wrapper.eq("teacher_id",course.getTeacherId());
         }
 
-        return ResultApi.ok().data("courseList", courseMappe.selectList(wrapper));
+        List<Course> courseList = courseMappe.selectList(wrapper);
+
+        for(Course temp:courseList){
+            QueryWrapper dWrapper = new QueryWrapper();
+            dWrapper.eq("id",temp.getId());
+            temp.setCourseDescription(courseDescriptionService.getOne(dWrapper));
+        }
+
+        return ResultApi.ok().data("courseList", courseList);
+    }
+
+    @Override
+    public ResultApi findCourseByHot() {
+
+        List<Course> courseList = courseMappe.findCourseByHot();
+
+        return ResultApi.ok().data("list",courseList);
     }
 
 }

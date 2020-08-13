@@ -2,7 +2,7 @@ server:
   port: 8001
 spring:
   application:
-    name: service_edu
+    name: service-edu
   profiles:
     active: dev
   datasource:
@@ -13,11 +13,23 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
 logging:
   level:
     root: info
 #mybatis日志
 mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:/mapper/*Mapper.xml
+
+# 熔断机制
+feign:
+  hystrix:
+    enabled: true
+# 延迟时间，默认 1000 毫秒
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 6000

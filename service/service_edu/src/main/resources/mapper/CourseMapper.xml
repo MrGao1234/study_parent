@@ -26,15 +26,19 @@
     </resultMap>
 
     <select id="findVideos" resultType="com.online.edu.entity.Video">
-        select * from edu_video where chapter_id = #{id}
+        select * from edu_video where chapter_id = #{id} and is_deleted = 0
     </select>
 
     <select id="findChapters" resultMap="chapterMapper">
-        select * from edu_chapter where course_id = #{id}
+        select * from edu_chapter where course_id = #{id} and is_deleted = 0
     </select>
 
 
     <update id="pushCourseById">
         update edu_course set status = 'Normal' where id = #{courseId}
     </update>
+
+    <select id="findCourseByHot" resultMap="courseMap">
+        select * from edu_course order by buy_count desc ,view_count desc limit 8
+    </select>
 </mapper>

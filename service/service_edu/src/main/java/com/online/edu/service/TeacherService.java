@@ -1,5 +1,6 @@
 package com.online.edu.service;
 
+import com.onlin.common.ResultApi;
 import com.online.edu.entity.Teacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface TeacherService extends IService<Teacher> {
 
+    ResultApi findTeacherByHot();
 }
