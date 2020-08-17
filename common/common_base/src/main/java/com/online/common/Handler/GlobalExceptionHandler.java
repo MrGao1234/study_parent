@@ -23,8 +23,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MyExeption.class)
     @ResponseBody
     public ResultApi error(MyExeption e){
-        log.error(ExceptionUtils.getExceptionStackTrace(e));
+        //log.error(ExceptionUtils.getExceptionStackTrace(e));
         e.printStackTrace();
         return ResultApi.error().message(e.getMsg()).code(e.getCode());
     }
+
 }

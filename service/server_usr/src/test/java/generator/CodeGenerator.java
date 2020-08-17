@@ -22,7 +22,7 @@ public class CodeGenerator {
         // 2、全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir("D:\\Projects\\study_parent\\service\\service_cms" + "/src/main/java");
+        gc.setOutputDir("D:\\Projects\\study_parent\\service\\server_usr" + "/src/main/java");
 
         gc.setAuthor("testjava");
         gc.setOpen(false); //生成后是否打开资源管理器
@@ -48,7 +48,7 @@ public class CodeGenerator {
 
         // 4、包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("cms"); //模块名
+        pc.setModuleName("usr"); //模块名
         //包  com.atguigu.eduservice
         pc.setParent("com.online");
         //包  com.atguigu.eduservice.controller
@@ -61,7 +61,7 @@ public class CodeGenerator {
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
 
-        strategy.setInclude("crm_banner");
+        strategy.setInclude("ucenter_member");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀

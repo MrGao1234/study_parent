@@ -17,6 +17,7 @@
         <module>server_oss</module>
         <module>service_vod</module>
         <module>service_cms</module>
+        <module>server_usr</module>
     </modules>
     <dependencies>
 
